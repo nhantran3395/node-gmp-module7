@@ -1,7 +1,7 @@
 import express, { NextFunction } from "express";
 import "./configs/dotenv.config";
 import { sequelize } from "./configs";
-import { userRouter, groupRouter } from "./routes";
+import { userRouter, groupRouter, authRouter } from "./routes";
 import { Logger } from "./logger";
 import {
   errorHandlingMiddleware,
@@ -30,6 +30,7 @@ app.get("/databaseconnection", async function (req, res, next: NextFunction) {
   }
 });
 
+app.use("/", authRouter);
 app.use("/users", userRouter);
 app.use("/groups", groupRouter);
 
