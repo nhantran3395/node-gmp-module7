@@ -29,6 +29,21 @@ export const userService = {
 
     return user;
   },
+  async getUserByLogin(login: string): Promise<User> {
+    let user: User | null;
+
+    try {
+      user = await User.findOne({ where: { login: login } });
+    } catch (err: any) {
+      throw new Error(err.message);
+    }
+
+    if (!user) {
+      throw new ResourceNotFound("User", login);
+    }
+
+    return user;
+  },
   async getUserAutoSuggestion(
     loginQuery: string,
     limit: number
