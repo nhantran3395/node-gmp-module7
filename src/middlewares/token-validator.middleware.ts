@@ -2,7 +2,11 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { API_MESSAGES } from "../shared/messages";
 
-const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
+const tokenValidatorMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   if (!req.headers.authorization) {
     return res.status(401).json({ message: API_MESSAGES.UNAUTHORIZED });
   }
@@ -20,4 +24,4 @@ const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
   );
 };
 
-export default authenticateToken;
+export default tokenValidatorMiddleware;
