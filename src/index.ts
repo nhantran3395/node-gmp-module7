@@ -8,7 +8,7 @@ import {
   errorHandlerMiddeware,
   routeNotExistsHandlerMiddleware,
   morganMiddleware,
-  tokenAuthorizerMiddleware,
+  tokenValidatorMiddleware,
 } from "./middlewares";
 import "./models/associations";
 
@@ -34,8 +34,8 @@ app.get("/databaseconnection", async function (req, res, next: NextFunction) {
 });
 
 app.use("/", authRouter);
-app.use("/users", tokenAuthorizerMiddleware, userRouter);
-app.use("/groups", tokenAuthorizerMiddleware, groupRouter);
+app.use("/users", tokenValidatorMiddleware, userRouter);
+app.use("/groups", tokenValidatorMiddleware, groupRouter);
 
 app.use(errorHandlerMiddeware);
 
