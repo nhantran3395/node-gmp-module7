@@ -1,10 +1,37 @@
 {
 	"info": {
-		"_postman_id": "5288bc9f-35c0-4f45-91d6-6e52efef5e21",
-		"name": "Node  JS GMP Module 5",
+		"_postman_id": "d6d0674e-8f68-441f-9d75-862e8c3f467e",
+		"name": "Node  JS GMP Module 6",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"isabellayoung\",\r\n    \"password\":\"bigguy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3002/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Get user by Id",
 			"request": {
