@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { TokenExpiredError } from "jsonwebtoken";
 import { API_MESSAGES } from "../shared/messages";
 
 const tokenValidatorMiddleware = (
@@ -15,8 +15,12 @@ const tokenValidatorMiddleware = (
     req.headers.authorization.split(" ")[1],
     process.env.JWT_SECRET as string,
     (err) => {
+      if (err instanceof TokenExpiredError) {
+        return res.status(403).json({ message: API_MESSAGES.TOKEN_EXPIRED });
+      }
+
       if (err) {
-        return res.status(403).json({ message: err.message });
+        return res.status(403).json({ message: API_MESSAGES.TOKEN_INVALID });
       }
 
       next();
