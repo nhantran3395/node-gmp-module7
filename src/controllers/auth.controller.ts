@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import { authService } from "../services";
 import { LoginRequestDto } from "../dtos";
 import { Logger } from "../logger";
-import { API_MESSAGES } from "../shared/messages";
 
 const { login } = authService;
 

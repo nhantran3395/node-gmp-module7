@@ -7,4 +7,6 @@ export const API_MESSAGES = {
   USERS_ADDED_TO_GROUP_SUCCESS: "User added to group successfully",
   METHOD_NOT_ALLOWED: "Method not allowed",
   ROUTE_NOT_EXISTED: "Route not existed",
+  UNAUTHORIZED: "Unauthorized",
+  TOKEN_INVALID: "Token invalid",
 };
