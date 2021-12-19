@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { API_MESSAGES } from "../shared/messages";
 
-const routeNotExistsHandlingMiddleware = (
+const routeNotExistsHandlerMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -9,4 +9,4 @@ const routeNotExistsHandlingMiddleware = (
   res.status(404).json({ message: API_MESSAGES.ROUTE_NOT_EXISTED });
 };
 
-export default routeNotExistsHandlingMiddleware;
+export default routeNotExistsHandlerMiddleware;

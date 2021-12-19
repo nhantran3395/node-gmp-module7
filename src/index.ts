@@ -5,8 +5,8 @@ import { sequelize } from "./configs";
 import { userRouter, groupRouter, authRouter } from "./routes";
 import { Logger } from "./logger";
 import {
-  errorHandlingMiddleware,
-  routeNotExistsHandlingMiddleware,
+  errorHandlerMiddeware,
+  routeNotExistsHandlerMiddleware,
   morganMiddleware,
   tokenAuthorizerMiddleware,
 } from "./middlewares";
@@ -37,9 +37,9 @@ app.use("/", authRouter);
 app.use("/users", tokenAuthorizerMiddleware, userRouter);
 app.use("/groups", tokenAuthorizerMiddleware, groupRouter);
 
-app.use(errorHandlingMiddleware);
+app.use(errorHandlerMiddeware);
 
-app.use(routeNotExistsHandlingMiddleware);
+app.use(routeNotExistsHandlerMiddleware);
 
 app.listen(port, () => {
   logger.info(`Server started on port ${port}`);

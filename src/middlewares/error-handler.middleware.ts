@@ -5,7 +5,7 @@ import { Logger } from "../logger";
 
 const logger = Logger("error-handler");
 
-const errorHandlingMiddleware = (
+const errorHandlerMiddeware = (
   err: Error | ApiError,
   req: Request,
   res: Response,
@@ -20,4 +20,4 @@ const errorHandlingMiddleware = (
   res.status(500).json({ message: API_MESSAGES.SERVER_ERROR });
 };
 
-export default errorHandlingMiddleware;
+export default errorHandlerMiddeware;
