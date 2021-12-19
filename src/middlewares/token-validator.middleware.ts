@@ -16,7 +16,7 @@ const tokenValidatorMiddleware = (
     process.env.JWT_SECRET as string,
     (err) => {
       if (err) {
-        return res.status(403).json({ message: API_MESSAGES.TOKEN_INVALID });
+        return res.status(403).json({ message: err.message });
       }
 
       next();
