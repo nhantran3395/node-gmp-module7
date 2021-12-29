@@ -11,21 +11,20 @@ const tokenValidatorMiddleware = (
     return res.status(401).json({ message: API_MESSAGES.UNAUTHORIZED });
   }
 
-  jwt.verify(
-    req.headers.authorization.split(" ")[1],
-    process.env.JWT_SECRET as string,
-    (err) => {
-      if (err instanceof TokenExpiredError) {
-        return res.status(403).json({ message: API_MESSAGES.TOKEN_EXPIRED });
-      }
+  try {
+    jwt.verify(
+      req.headers.authorization.split(" ")[1],
+      process.env.JWT_SECRET as string
+    );
 
-      if (err) {
-        return res.status(403).json({ message: API_MESSAGES.TOKEN_INVALID });
-      }
-
-      next();
+    next();
+  } catch (error) {
+    if (error instanceof TokenExpiredError) {
+      return res.status(403).json({ message: API_MESSAGES.TOKEN_EXPIRED });
     }
-  );
+
+    return res.status(403).json({ message: API_MESSAGES.TOKEN_INVALID });
+  }
 };
 
 export default tokenValidatorMiddleware;
