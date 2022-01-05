@@ -34,13 +34,23 @@ app.get("/databaseconnection", async function (req, res, next: NextFunction) {
 });
 
 app.use("/", authRouter);
-app.use("/users", tokenValidatorMiddleware, userRouter);
-app.use("/groups", tokenValidatorMiddleware, groupRouter);
+app.use(
+  "/users",
+  (req, res, next) => tokenValidatorMiddleware.validate(req, res, next),
+  userRouter
+);
+app.use(
+  "/groups",
+  (req, res, next) => tokenValidatorMiddleware.validate(req, res, next),
+  groupRouter
+);
 
 app.use(errorHandlerMiddeware);
 
 app.use(routeNotExistsHandlerMiddleware);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   logger.info(`Server started on port ${port}`);
 });
+
+export default server;

@@ -8,6 +8,6 @@ export const API_MESSAGES = {
   METHOD_NOT_ALLOWED: "Method not allowed",
   ROUTE_NOT_EXISTED: "Route not existed",
   UNAUTHORIZED: "Unauthorized",
-  TOKEN_INVALID: "Token is invalid",
+  TOKEN_INVALID: "Token is nvalid",
   TOKEN_EXPIRED: "Token expired",
 };
